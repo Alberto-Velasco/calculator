@@ -69,7 +69,7 @@ Para compilar y ejecutar el proyecto, sigue estos pasos:
 4. Ejecuta la aplicación Spring Boot:
      java -jar target/calculator-1.0.jar
    
-La aplicación estará disponible en http://localhost:8090.
+La aplicación estará disponible en http://localhost:8090
 
 Ejemplos de Llamadas de la API
 
