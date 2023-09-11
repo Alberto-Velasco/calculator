@@ -6,6 +6,7 @@ Este proyecto es un microservicio de calculadora que permite realizar operacione
 
 El proyecto sigue la siguiente estructura de directorios:
 
+```
 src/
 |-- main/
 | |-- java/
@@ -31,8 +32,12 @@ src/
 | | |-- com/
 | | | |-- example/
 | | | | |-- calculator/
+| | | | | |-- controller/
 | | | | | | |-- CalculatorControllerTest.java
+| | | | | |-- service/
+| | | | | | | | |-- impl/
 | | | | | | |-- CalculatorServiceTest.java
+```
 
 
 ## Dependencias Utilizadas
