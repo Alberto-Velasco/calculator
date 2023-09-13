@@ -1,9 +1,8 @@
 package com.example.calculator.exceptions;
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
-
-@ControllerAdvice
 public class CustomExceptionHandler extends RuntimeException {
+
+    private final static long serialVersionUID= 1L;
 
     public CustomExceptionHandler() {
         super();
