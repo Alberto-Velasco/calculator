@@ -1,7 +1,7 @@
 package com.example.calculator.service.impl;
 
-import com.example.calculator.exceptions.CustomExceptionHandler;
 import com.example.calculator.request.CalculatorRequest;
+import com.example.calculator.response.CalculateResponse;
 import com.example.calculator.response.OpertionInfoResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,18 +28,18 @@ public class CalculatorServiceImplTest {
 	public void testCalculateAdd() {
 		CalculatorRequest request = new CalculatorRequest(BigDecimal.valueOf(2),BigDecimal.valueOf(3), 1);
 
-		BigDecimal result = calculatorService.calculate(request);
+		CalculateResponse result = calculatorService.calculate(request);
 
-		assertEquals(new BigDecimal("5"), result);
+		assertEquals(new CalculateResponse(new BigDecimal("5")), result);
 	}
 
 	@Test
 	public void testCalculateSubtract() {
 		CalculatorRequest request = new CalculatorRequest(BigDecimal.valueOf(10),BigDecimal.valueOf(4), 2);
 
-		BigDecimal result = calculatorService.calculate(request);
+		CalculateResponse result = calculatorService.calculate(request);
 
-		assertEquals(new BigDecimal("6"), result);
+		assertEquals(new CalculateResponse(new BigDecimal("6")), result);
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class CalculatorServiceImplTest {
 		CalculatorRequest request = new CalculatorRequest(BigDecimal.valueOf(2),BigDecimal.valueOf(3), 3);
 		// Invalid operation type
 
-		assertThrows(CustomExceptionHandler.class, () -> {
+		assertThrows(IllegalArgumentException.class, () -> {
 			calculatorService.calculate(request);
 		});
 	}

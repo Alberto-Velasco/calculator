@@ -1,16 +1,21 @@
 package com.example.calculator.controller;
 
 import com.example.calculator.request.CalculatorRequest;
+import com.example.calculator.response.CalculateResponse;
 import com.example.calculator.response.OpertionInfoResponse;
 import com.example.calculator.service.CalculatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@RestControllerAdvice
+@RestController
 @RequestMapping("/api/calculator")
 public class CalculatorController {
 
@@ -22,7 +27,7 @@ public class CalculatorController {
     }
 
     @PostMapping("/calculate")
-    public ResponseEntity<BigDecimal> calculate(@RequestBody CalculatorRequest request) {
+    public ResponseEntity<CalculateResponse> calculate(@RequestBody CalculatorRequest request) {
         return ResponseEntity.ok(calculatorService.calculate(request));
     }
 

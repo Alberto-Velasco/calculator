@@ -1,9 +1,11 @@
 package com.example.calculator.service.impl;
 
-import com.example.calculator.exceptions.CustomExceptionHandler;
+import com.example.calculator.config.TracerConfig;
 import com.example.calculator.request.CalculatorRequest;
+import com.example.calculator.response.CalculateResponse;
 import com.example.calculator.response.OpertionInfoResponse;
 import com.example.calculator.service.CalculatorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -14,7 +16,10 @@ import java.util.List;
 @Service
 public class CalculatorServiceImpl implements CalculatorService {
 
-    public BigDecimal calculate(@RequestBody CalculatorRequest request) {
+    @Autowired
+    private TracerConfig tracerConfig;
+
+    public CalculateResponse calculate(@RequestBody CalculatorRequest request) {
         BigDecimal result;
         switch (request.getOperationType()){
             case 1:
@@ -24,9 +29,15 @@ public class CalculatorServiceImpl implements CalculatorService {
                 result = subtract(request);
                 break;
             default:
-                throw new CustomExceptionHandler("Unexpected value: " + request.getOperationType());
+                throw new IllegalArgumentException("Tipo de operación no válido, valor recibido:" +
+                        " " + request.getOperationType());
         }
-        return (result);
+        tracerConfig.getTracerImpl().trace("Tipo de operación: " + request.getOperationType() + " , " +
+                "Primer operando: " +request.getOperand1() + " , " +
+                "Segundo operando: " +request.getOperand2() + " , " +
+                "Resultado: " + result);
+
+        return (new CalculateResponse(result));
     }
 
     public List<OpertionInfoResponse> getAllOperations() {

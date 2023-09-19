@@ -1,6 +1,7 @@
 package com.example.calculator.controller;
 
 import com.example.calculator.request.CalculatorRequest;
+import com.example.calculator.response.CalculateResponse;
 import com.example.calculator.response.OpertionInfoResponse;
 import com.example.calculator.service.CalculatorService;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,12 +36,12 @@ public class CalculatorControllerTest {
         CalculatorRequest request = new CalculatorRequest();
         BigDecimal expectedResult = new BigDecimal("10");
 
-        when(calculatorService.calculate(request)).thenReturn(expectedResult);
+        when(calculatorService.calculate(request)).thenReturn(new CalculateResponse(expectedResult));
 
-        ResponseEntity<BigDecimal> responseEntity = calculatorController.calculate(request);
+        ResponseEntity<CalculateResponse> responseEntity = calculatorController.calculate(request);
 
         assertEquals(200, responseEntity.getStatusCodeValue());
-        assertEquals(expectedResult, responseEntity.getBody());
+        assertEquals(new CalculateResponse(expectedResult), responseEntity.getBody());
     }
 
     @Test
