@@ -45,7 +45,6 @@ src/
 Este proyecto utiliza las siguientes dependencias:
 
 - Spring Boot: Para el desarrollo de la aplicación web y la configuración de Spring.
-- Spring Data JPA: Para la capa de persistencia de datos.
 - Spring Web: Para la creación de la API RESTful.
 - OpenAPI (Swagger): Para definir y documentar la API.
 - JUnit5: Para escribir pruebas unitarias.
@@ -80,12 +79,13 @@ Ejemplos de Llamadas de la API
 
 Suma
 
-POST /api/calculator/add
+POST /api/calculator/calculate
 Content-Type: application/json
 
 {
     "operand1": 5.5,
-    "operand2": 3.2
+    "operand2": 3.2,
+    "operationType": 1
 }
 Respuesta:
 {
@@ -94,12 +94,13 @@ Respuesta:
 
 Resta
 
-POST /api/calculator/subtract
+POST /api/calculator/calculate
 Content-Type: application/json
 
 {
     "operand1": 8.7,
-    "operand2": 3.5
+    "operand2": 3.5,
+    "operationType": 2
 }
 Respuesta:
 {
