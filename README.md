@@ -7,6 +7,10 @@ Este proyecto es un microservicio de calculadora que permite realizar operacione
 El proyecto sigue la siguiente estructura de directorios:
 
 ```
+lib/
+|--tracer-1.0.0.jar
+|--tracer-1.0.0-javadoc.jar
+|--tracer-1.0.0-sources.jar
 src/
 |-- main/
 | |-- java/
@@ -15,12 +19,17 @@ src/
 | | | | |-- calculator/
 | | | | | |-- config/
 | | | | | | |-- SwaggerConfig.java
+| | | | | | |-- TracerConfig.java
 | | | | | |-- controller/
 | | | | | | |-- CalculatorController.java
+| | | | | | |-- RestResponseEntityExceptionHandler
 | | | | | |-- exceptions/
 | | | | | | |-- CustomExceptionHandler.java
 | | | | | |-- request/
 | | | | | | |-- CalculatorRequest.java
+| | | | | |-- response/
+| | | | | | |-- CalculateResponse.java
+| | | | | | |-- OpertionInfoResponse-java
 | | | | | |-- service/
 | | | | | | |-- CalculatorService.java
 | | | | | | |-- impl/
@@ -76,6 +85,23 @@ Para compilar y ejecutar el proyecto, sigue estos pasos:
 La aplicación estará disponible en http://localhost:8090
 
 Ejemplos de Llamadas de la API
+
+Listado de tipos de operaciones :
+
+GET /api/calculator/operations
+Content-Type: application/json
+
+Respuesta:
+[
+  {
+    "value": 1,
+    "name": "suma"
+  },
+  {
+    "value": 2,
+    "name": "resta"
+  }
+]
 
 Suma
 
